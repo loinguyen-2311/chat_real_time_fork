@@ -18,4 +18,4 @@ jobs:
     - name: Deploy to Render
       uses: render-examples/action-deploy-render@main
       env:
-        RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+        RENDER_API_KEY: ${{ secrets.RENDER }}
