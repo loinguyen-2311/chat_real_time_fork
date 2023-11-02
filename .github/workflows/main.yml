@@ -1,21 +1,30 @@
 name: Deploy to Render
 
-on: 
+on:
   push:
     branches:
       - master
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Install dependencies
-      run: bundle install
-      
-    - name: Deploy to Render
-      uses: render-examples/action-deploy-render@main
-      env:
-        RENDER_API_KEY: ${{ secrets.RENDER }}
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Deploy to Render
+        run: |
+          curl -X POST "https://api.render.com/v1/deploys" \
+          -H "Authorization: Bearer ${{ secrets.RENDER }}" \
+          -d "branch=master" \
+          -d "directory=."
