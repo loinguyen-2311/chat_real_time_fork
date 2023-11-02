@@ -1,3 +1,32 @@
+# name: Deploy to Render
+
+# on:
+#   push:
+#     branches:
+#       - master
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+
+#       - name: Set up Ruby
+#         uses: ruby/setup-ruby@v1
+#         with:
+#           ruby-version: 2.6.5
+
+#       - name: Install dependencies
+#         run: |
+#           gem install bundler
+#           bundle install
+
+#       - name: Deploy to Render
+#         run: |
+#             curl -X GET "https://api.render.com/deploy/srv-ckudhubamefc73fosi40?key=SM6_ZVhMb14"
+
+
 name: Deploy to Render
 
 on:
@@ -24,11 +53,7 @@ jobs:
 
       - name: Deploy to Render
         run: |
-            curl -X GET "https://api.render.com/deploy/srv-ckudhubamefc73fosi40?key=SM6_ZVhMb14"
-
-
-
           # curl -X POST "https://api.render.com/v1/deploys" \
-          # -H "Authorization: Bearer ${{ secrets.RENDER }}" \
+          # -H "Authorization: Bearer rnd_qfmqIH5wz7D792XRXK0Dv9DV0w7G" \
           # -d "branch=master" \
           # -d "directory=."
